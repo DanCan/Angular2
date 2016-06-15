@@ -1,7 +1,9 @@
+# File Specific
+README.md
+
 # Project Specific
 node_modules/
 .idea/
-README.md
 
 # MAC
 .DS_Store
