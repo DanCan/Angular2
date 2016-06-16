@@ -30,3 +30,5 @@ Making it faster and faster and eventually you can't click it.
 *A DropDown available for 'Interactions'=> MouseClick and MouseOver.
 -Changing the box Interaction: The box can be interrupted by a mouseOver or a mouseClick, this 
 drop down will change this callback function.
+
+testing.
