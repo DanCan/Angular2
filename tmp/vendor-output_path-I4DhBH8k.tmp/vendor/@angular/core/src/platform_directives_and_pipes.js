@@ -1,0 +1,1 @@
+/Volumes/Work/Programming/Angular2/PersonalGit/Angular2/tmp/vendor-input_base_path-65uBLyML.tmp/0/@angular/core/src/platform_directives_and_pipes.js
