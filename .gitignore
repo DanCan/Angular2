@@ -1,5 +1,6 @@
 # Project Specific
 node_modules/
+typings/
 .idea/
 
 # MAC
