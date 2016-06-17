@@ -1,4 +1,8 @@
+# Files
+npm-debug.log
+
 # Project Specific
+dist/
 node_modules/
 typings/
 .idea/
