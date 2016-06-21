@@ -1,3 +1,10 @@
-<h1>
-  {{title}}
-</h1>
+<my-header></my-header>
+<div class="ui main text container">
+  <add-article [onAddArticle]="onAddArticleCallback"></add-article>
+  <div class=" ui grid posts">
+    <article-component
+            *ngFor="let article of sortedArticles()"
+            [article]="article">
+    </article-component>
+  </div>
+</div>
