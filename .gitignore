@@ -3,6 +3,7 @@ npm-debug.log
 
 # Project Specific
 dist/
+tmp/
 node_modules/
 typings/
 .idea/
