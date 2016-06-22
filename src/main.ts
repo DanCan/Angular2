@@ -4,7 +4,7 @@ import 'jquery/jquery.js'
 import 'semantic-ui-css/semantic.js'
 
 import { enableProdMode } from '@angular/core';
-import { AppComponent, environment } from './app/';
+import { AppComponent, environment } from './app';
 
 if (environment.production) {
   enableProdMode();

@@ -1,34 +1,6 @@
-import { Component, Injectable } from '@angular/core';
-
-@Injectable()
-class Article {
-    title: string;
-    link: string;
-    votes: number;
-
-    constructor( title: string,  link: string, votes?: number) {
-        this.title = title;
-        this.link = link;
-        this.votes = votes || 0;
-    }
-
-    voteUp():void{
-        this.votes += 1;
-    }
-
-    voteDown(): void {
-        this.votes -= 1;
-    }
-
-    domain() {
-        try{
-            const link: string = this.link.split('//')[1];
-            return link.split('/')[0];
-        } catch (err) {
-            return null;
-        }
-    }
-}
+import { Component } from '@angular/core'
+import {Article} from "./article/article.injectable";
+import {AddArticleComponent} from "./article/addArticle.component";
 
 @Component({
   selector: 'my-header',
@@ -49,44 +21,6 @@ class Article {
   </div>`
 })
 class Header { }
-
-@Component({
-    selector: 'add-article',
-    inputs: ['onAddArticle'],
-    template: `
-        <form
-            (ngSubmit)="addArticle(newTitle, newLink)"
-            class="ui large form segment">
-            <h3 class="ui header">Add a link</h3>
-            <div class="field">
-                <label for="title">Title: </label>
-                <input name="title"
-                    #newTitle/>
-            </div>
-            <div class="field">
-                <label for="link">Link: </label>
-                <input name="link"
-                    #newLink />
-            </div>
-
-            <input type="submit"
-                    value="Submit link"
-                    class="ui positive right floated button"
-                    />
-        </form>
-    `
-})
-class AddArticleComponent {
-    onAddArticle: Function;
-
-    addArticle(newTitle: HTMLInputElement, newLink: HTMLInputElement) {
-        console.log('Adding Call', newTitle.value, newLink);
-        const article = new Article(newTitle.value, newLink.value);
-        this.onAddArticle(article);
-        newTitle.value = '';
-        newLink.value = '';
-    }
-}
 
 @Component({
   selector: 'article-component',
