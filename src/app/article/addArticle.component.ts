@@ -20,11 +20,12 @@ import { Article } from './article.injectable'
                     [ngFormControl]="myForm.controls['title']"/>
             </div>
             <div class="field"
-                [class.error]="!myForm.find('link').valid && myForm.find('link').touched">
+                [class.error]="formLink.control.hasError('invalidHTTP') && formLink.control.touched">
                 <label for="link">Link: </label>
                 <input name="link"
                     #newLink
-                    [ngFormControl]="myForm.controls['link']"/> {{myForm.find('link').hasError('invalid')}}
+                    #formLink="ngForm"
+                    [ngFormControl]="myForm.controls['link']"/>
             </div>
 
             <input type="submit"
@@ -48,9 +49,8 @@ export class AddArticleComponent {
     }
 
     linkValidator(control: Control): { [s: string]: boolean } {
-        console.log(!control.value.match(/^((https?):\/\/)?([w|W]{3}\.)+[a-zA-Z0-9\-\.]{3,}\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?$/));
         if (!control.value.match(/^((https?):\/\/)?([w|W]{3}\.)+[a-zA-Z0-9\-\.]{3,}\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?$/)) {
-            return { invalid: true }
+            return { invalidHTTP: true }
         }
     }
 
