@@ -1,6 +1,21 @@
 # Angular2 - Goal
 Local goals for personal projects.
 
+```bash
+How to start:
+
+# 1. install the project's dependencies
+npm install
+
+# 2. watches your files and uses livereload by default
+npm start
+
+
+# dev build
+npm run build.dev
+# prod build
+npm run build.prod
+```
 
 ## ROUGH DRAFT ##
 
