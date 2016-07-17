@@ -17,10 +17,10 @@ import { MockBackend } from '@angular/http/testing';
 import { getDOM } from '@angular/platform-browser/src/dom/dom_adapter';
 
 import { NameListService } from '../shared/index';
-import { HomeComponent } from './home.component';
+import { AddNamesComponent } from './addNames.component';
 
 export function main() {
-  describe('Home component', () => {
+  describe('AddNames component', () => {
     // Disable old forms
     let providerArr: any[];
 
@@ -33,19 +33,19 @@ export function main() {
           .then((rootTC: any) => {
             rootTC.detectChanges();
 
-            let homeInstance = rootTC.debugElement.children[0].componentInstance;
-            let homeDOMEl = rootTC.debugElement.children[0].nativeElement;
+            let addNamesInstance = rootTC.debugElement.children[0].componentInstance;
+            let addNamesDOMEl = rootTC.debugElement.children[0].nativeElement;
 
-            expect(homeInstance.nameListService).toEqual(jasmine.any(NameListService));
-            expect(getDOM().querySelectorAll(homeDOMEl, 'li').length).toEqual(0);
+            expect(addNamesInstance.nameListService).toEqual(jasmine.any(NameListService));
+            expect(getDOM().querySelectorAll(addNamesDOMEl, 'li').length).toEqual(0);
 
-            homeInstance.newName = 'Minko';
-            homeInstance.addName();
+            addNamesInstance.newName = 'Minko';
+            addNamesInstance.addName();
             rootTC.detectChanges();
 
-            expect(getDOM().querySelectorAll(homeDOMEl, 'li').length).toEqual(1);
+            expect(getDOM().querySelectorAll(addNamesDOMEl, 'li').length).toEqual(1);
 
-            expect(getDOM().querySelectorAll(homeDOMEl, 'li')[0].textContent).toEqual('Minko');
+            expect(getDOM().querySelectorAll(addNamesDOMEl, 'li')[0].textContent).toEqual('Minko');
           });
       }));
   });
@@ -65,7 +65,7 @@ export function main() {
     }),
   ],
   selector: 'test-cmp',
-  template: '<sd-home></sd-home>',
-  directives: [HomeComponent]
+  template: '<sd-addNames></sd-addNames>',
+  directives: [AddNamesComponent]
 })
 class TestComponent {}

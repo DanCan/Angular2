@@ -21,7 +21,7 @@ import {
 } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './+home/home.component';
+import { AddNamesComponent } from './+addnames/addNames.component';
 import { AboutComponent } from './+about/about.component';
 
 export function main() {
@@ -35,7 +35,7 @@ export function main() {
     // Support for testing component that uses Router
     beforeEachProviders(() => {
       let config:RouterConfig = [
-        {path: '', component: HomeComponent},
+        {path: '', component: AddNamesComponent},
         {path: 'about', component: AboutComponent}
       ];
 
