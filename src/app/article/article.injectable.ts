@@ -23,8 +23,20 @@ export class Article {
 
     domain() {
         try{
-            let temp = this.link.split('//')[1];
-            const link: string = !temp ? this.link : temp;
+            let wwwTemp = this.link.split(/\.(.+)?/)[1];
+            let httpTemp = this.link.split('//')[1];
+
+            // Is a "www." address
+            if (!httpTemp){
+                httpTemp = wwwTemp;
+            } else if (httpTemp.indexOf("www.") != -1) {    // Is a "http://www." address
+                httpTemp = wwwTemp;
+            }
+            // Trust it is a "http://" address
+            // Or wwwTemp was messed and we just take the original link.
+            const link: string = !wwwTemp ? this.link : httpTemp;
+
+            console.log(" link1:"+ link );
             return link.split('/')[0];
         } catch (err) {
             return null;

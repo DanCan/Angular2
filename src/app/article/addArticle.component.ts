@@ -49,7 +49,10 @@ export class AddArticleComponent {
     }
 
     linkValidator(control: Control): { [s: string]: boolean } {
-        if (!control.value.match(/^((https?):\/\/)?([w|W]{3}\.)+[a-zA-Z0-9\-\.]{3,}\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?$/)) {
+        // Checks for either "http://" or 'www.' at the begging of the web address.
+        let match = control.value.match(/^(((https?):\/\/)|([w|W]{3,}\.))[a-zA-Z0-9\-\.]{3,}\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?$/);
+        console.log(control.value+ " Link Validator Matching Value:"+match);
+        if (!match) {
             return { invalidHTTP: true }
         }
     }
@@ -64,8 +67,9 @@ export class AddArticleComponent {
     }
 
     private formatHTTPLink(link: HTMLInputElement){
-        if (!link.value.match(/^((https?):\/\/)/)) {
-            link.value = 'http://'+link.value;
+        // Just look "www." in the link.
+        if (!link.value.match(/^ ([w|W]{3,}\.)/) ) {
+                link.value = "http://" + link.value;
         }
     }
 }
