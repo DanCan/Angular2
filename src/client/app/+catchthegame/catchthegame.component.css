@@ -1,4 +1,56 @@
-:host {
-  display: block;
-  padding: 0 16px;
+/*:host {*/
+  /*display: block;*/
+  /*padding: 0 16px;*/
+/*}*/
+
+body {
+  margin: 0;
 }
+
+div {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+.sizeMe{
+  position:absolute;
+  height:100%;
+}
+
+.main {
+  position: relative;
+  width: 100%;
+}
+
+.stage {
+  position: relative;
+  background-color: #a6a7a8;
+}
+
+.title {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: larger;
+  cursor: pointer;
+}
+
+.box {
+  position:absolute;
+  background-color: #00AA00;
+}
+
+.goto-top-right {
+  transition: transform 1s ease;
+  transform: translate(300%, 0%);
+}
+
+.goto-top-left {
+  transition: transform 1s ease;
+  transform: translate(0%, 300%);
+}
+

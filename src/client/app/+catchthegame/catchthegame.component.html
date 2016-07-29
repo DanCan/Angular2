@@ -1,3 +1,17 @@
-<p>
-  Meow
-<p>
+
+<div class="sizeMe">
+</div>
+<div (window:resize)="stage.OnResize($event)" class="main">
+
+  <div class="stage">
+    <div class="box" (click)="box.NewDirection()"></div>
+
+    <p (click)="Start()" *ngIf="!started" class="title">
+      Click to Start!
+    </p>
+  </div>
+
+</div>
+
+
+
