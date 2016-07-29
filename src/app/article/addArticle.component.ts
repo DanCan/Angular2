@@ -58,7 +58,6 @@ export class AddArticleComponent {
     }
 
     addArticle(newTitle: HTMLInputElement, newLink: HTMLInputElement) {
-        console.log('Adding Call', this.myForm.value);
         this.formatHTTPLink(newLink);
         const article = new Article(newTitle.value, newLink.value);
         this.onAddArticle(article);
@@ -67,7 +66,7 @@ export class AddArticleComponent {
     }
 
     private formatHTTPLink(link: HTMLInputElement){
-        // Just look "www." in the link.
+        // Just look "www." at start of the link.
         if (!link.value.match(/^ ([w|W]{3,}\.)/) ) {
                 link.value = "http://" + link.value;
         }
