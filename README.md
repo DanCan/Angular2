@@ -3,11 +3,13 @@ Local goals for personal projects.
 
 ```bash
 How to start:
+# 0. Delete tmp, node_modules and typings
 
-# 1. install the project's dependencies
-npm install
+# 1. Install the project's dependencies
+sudo npm install 
+If you don't sudo, it never works for me...
 
-# 2. watches your files and uses livereload by default
+# 2. Now watches your files; uses LiveReload by default
 npm start
 
 

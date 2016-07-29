@@ -1,0 +1,5 @@
+.ui.form .field.warning input {
+    background: #fffcec;
+    border-color: #d0cc90;
+    color: #949235;
+}
