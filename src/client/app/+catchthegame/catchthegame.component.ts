@@ -72,7 +72,7 @@ class Stage {
   private m_setBoxDimensions() {
     if( this._box) {
       let dims = this.m_getDimensions();
-      this._box.SetDimesionByScale(dims.width/4, dims.height/4);
+      this._box.SetDimensionByScale(dims.width/4, dims.height/4);
     }
   }
 
@@ -98,7 +98,7 @@ class Box {
     this._boxDiv = document.getElementsByClassName('box')[0];
   }
 
-  public SetDimesionByScale(stageWidth, stageHeight) {
+  public SetDimensionByScale(stageWidth, stageHeight) {
     this._boxDiv.style.width = stageWidth + "px";
     this._boxDiv.style.height = stageHeight + "px";
   }
