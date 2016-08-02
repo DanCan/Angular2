@@ -8,24 +8,18 @@ import { Article } from './article.injectable'
     inputs: ['onAddArticle'],
     styleUrls: ['app/+redditclone/article/article.css'],
   directives:[REACTIVE_FORM_DIRECTIVES],
-  providers:[FORM_PROVIDERS],
     template: `
         <form [formGroup]="myForm"
-            (ngSubmit)="addArticle(formTitle.control.value, newLink)"
+            (ngSubmit)="addArticle(formTitle.value, newLink)"
             class="ui large form segment">
             <h3 class="ui header">Add a link</h3>
-            <div class="field" *ngIf="true"
-                [class.warning]="!formTitle.valid && formTitle.touched">
-                <label for="ftitle">Title: </label>
-                <input name="ftitle" formControlName="title"/>
-            </div>
-            <div class="field" *ngIf="true"
-                [class.error]="formLink.hasError('invalidHTTP') && formLink.touched">
-                <label for="flink">Link: </label>
-                <input name="flink" formControlName="link"
-                    #newLink/>
+
+            <div class="field">
+                <label for="titleInput">Title: {{formTitle.touched}}</label>
+                <input name="titleInput" formControlName="title" />
             </div>
 
+            
             <input type="submit"
                     value="Submit link"
                     class="ui positive right floated button"
