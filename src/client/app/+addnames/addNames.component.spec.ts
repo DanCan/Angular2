@@ -1,11 +1,9 @@
 import { Component, provide } from '@angular/core';
 import { TestComponentBuilder } from '@angular/compiler/testing';
-import { disableDeprecatedForms, provideForms } from '@angular/forms/index';
+import { disableDeprecatedForms, provideForms } from '@angular/forms';
 import {
-  describe,
-  expect,
-  inject,
-  it
+  async,
+  inject
 } from '@angular/core/testing';
 import {
   BaseRequestOptions,
@@ -27,7 +25,7 @@ export function main() {
     beforeEach(() => { providerArr = [disableDeprecatedForms(), provideForms()]; });
 
     it('should work',
-      inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {
+      async(inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {
         tcb.overrideProviders(TestComponent, providerArr)
           .createAsync(TestComponent)
           .then((rootTC: any) => {
@@ -47,7 +45,7 @@ export function main() {
 
             expect(getDOM().querySelectorAll(addNamesDOMEl, 'li')[0].textContent).toEqual('Minko');
           });
-      }));
+      })));
   });
 }
 

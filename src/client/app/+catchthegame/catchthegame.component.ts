@@ -40,8 +40,8 @@ export class CatchTheGameComponent {
 }
 
 class Stage {
-  private _sizingDiv;
-  private _stageDiv;
+  private _sizingDiv: any;
+  private _stageDiv: any;
   private _box: Box;
 
   constructor() {
@@ -91,14 +91,14 @@ class Stage {
 }
 
 class Box {
-  private _boxDiv;
+  private _boxDiv: any;
   private _goingRight = false;
 
   constructor(){
     this._boxDiv = document.getElementsByClassName('box')[0];
   }
 
-  public SetDimensionByScale(stageWidth, stageHeight) {
+  public SetDimensionByScale(stageWidth: any, stageHeight: any) {
     this._boxDiv.style.width = stageWidth + "px";
     this._boxDiv.style.height = stageHeight + "px";
   }

@@ -10,15 +10,19 @@ import { Article } from './article.injectable'
   directives:[REACTIVE_FORM_DIRECTIVES],
     template: `
         <form [formGroup]="myForm"
-            (ngSubmit)="addArticle(formTitle.value, newLink)"
+            (ngSubmit)="addArticle(newTitle, newLink)"
             class="ui large form segment">
             <h3 class="ui header">Add a link</h3>
 
-            <div class="field">
-                <label for="titleInput">Title: {{formTitle.touched}}</label>
-                <input name="titleInput" formControlName="title" />
+            <div class="field" [class.warning]="!formTitle.valid && formTitle.touched">
+                <label for="titleInput">Title:</label>
+                <input name="titleInput" #newTitle formControlName="title" [formControl]="formTitle"/>
             </div>
 
+            <div class="field" [class.error]="formLink.hasError('invalidHTTP') && formLink.touched">
+                <label for="linkInput">Link: </label>
+                <input name="linkInput" #newLink formControlName="link" [formControl]="formLink"/>
+            </div>
             
             <input type="submit"
                     value="Submit link"
@@ -29,7 +33,6 @@ import { Article } from './article.injectable'
 })
 export class AddArticleComponent {
     onAddArticle: Function;
-  //TODO: Still not working with the new forms. Somethign with no provider :/
     myForm: FormGroup;
     formLink: AbstractControl;
     formTitle: AbstractControl;
@@ -37,9 +40,7 @@ export class AddArticleComponent {
     constructor(fb: FormBuilder) {
         this.myForm = fb.group({
             title: ['', Validators.required],
-            link: ['', Validators.compose([
-                Validators.required, this.linkValidator
-            ])]
+            link: ['', [Validators.required, this.linkValidator]]
         });
 
       this.formLink = this.myForm.controls['link'];
@@ -53,6 +54,8 @@ export class AddArticleComponent {
         if (!match) {
             return { invalidHTTP: true }
         }
+
+        return { }
     }
 
     addArticle(newTitle: HTMLInputElement, newLink: HTMLInputElement) {

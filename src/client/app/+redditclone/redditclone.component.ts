@@ -38,7 +38,7 @@ class Header { }
     <a class="ui header large" href="{{ article.link }}">
         {{ article.title }}
     </a>
-    <div class="meta">({{ article.domain() }})<br/> {{article.link}}</div>
+    <div class="meta">({{ article.domain() }})</div>
     <ul class="ui big horizontal list voters">
         <li class="item">
             <a href (click)="voteUp()">

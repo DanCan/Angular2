@@ -36,7 +36,6 @@ export class Article {
             // Or wwwTemp was messed and we just take the original link.
             const link: string = !wwwTemp ? this.link : httpTemp;
 
-            console.log(" link1:"+ link );
             return link.split('/')[0];
         } catch (err) {
             return null;
