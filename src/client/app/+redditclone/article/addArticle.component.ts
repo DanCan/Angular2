@@ -10,8 +10,8 @@ import { Article } from './article.injectable'
   directives:[REACTIVE_FORM_DIRECTIVES],
     template: `
         <form [formGroup]="myForm"
-            (ngSubmit)="addArticle(newTitle, newLink)"
-            class="ui large form segment">
+          (ngSubmit)="addArticle(newTitle, newLink)"
+          class="ui large form segment">
             <h3 class="ui header">Add a link</h3>
 
             <div class="field" [class.warning]="!formTitle.valid && formTitle.touched">
@@ -24,10 +24,12 @@ import { Article } from './article.injectable'
                 <input name="linkInput" #newLink formControlName="link" [formControl]="formLink"/>
             </div>
             
-            <input type="submit"
+            <div [style.display]="'inline-block'" [style.width.%]="100">
+              <input type="submit"
                     value="Submit link"
                     class="ui positive right floated button"
                     [disabled]="!myForm.valid "/>
+            </div>
         </form>
     `
 })
