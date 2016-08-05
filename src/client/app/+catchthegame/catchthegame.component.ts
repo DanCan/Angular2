@@ -3,6 +3,7 @@
  */
 
 import { Component, ElementRef } from '@angular/core';
+import random = require("core-js/fn/number/random");
 
 @Component({
   moduleId: module.id,
@@ -35,6 +36,7 @@ export class CatchTheGameComponent {
 
   private addBox(){
     this.stage.SetupBox(this.box);
+    this.stage.SetupBlock();
   }
 
 }
@@ -43,6 +45,7 @@ class Stage {
   private _sizingDiv: any;
   private _stageDiv: any;
   private _box: Box;
+  private _block: Box;
 
   constructor() {
     // Init
@@ -67,6 +70,13 @@ class Stage {
   public SetupBox(box:Box) {
     this._box = box;
     this.m_setBoxDimensions();
+  }
+
+  public SetupBlock() {
+    this._block = new Box('block');
+    let dims = this.m_getDimensions();
+    this._block.SetDimensionByScale(dims.width/4, dims.height/4);
+    // Set transform?
   }
 
   private m_setBoxDimensions() {
@@ -94,8 +104,15 @@ class Box {
   private _boxDiv: any;
   private _goingRight = false;
 
-  constructor(){
-    this._boxDiv = document.getElementsByClassName('box')[0];
+  private cssDirections = [
+    'top-right',
+    'top-left',
+    'bottom-left',
+    'bottom-right',
+  ];
+
+  constructor(who = 'box'){
+    this._boxDiv = document.getElementsByClassName(who)[0];
   }
 
   public SetDimensionByScale(stageWidth: any, stageHeight: any) {
@@ -103,17 +120,22 @@ class Box {
     this._boxDiv.style.height = stageHeight + "px";
   }
 
-  public Move(){
-    this._boxDiv.className = 'box goto-top-right';
-    this._goingRight = true;
+  public NewDirection() {
+    let cssClass = this._boxDiv.className;
+    let newClass = this.cssDirections[this.getRandomInt(0,3)];
+
+    while(cssClass.indexOf(newClass) !== -1){
+      newClass = this.cssDirections[this.getRandomInt(0,3)];
+    }
+
+    this._boxDiv.className = 'box goto-'+ newClass;
   }
 
-  public NewDirection(){
-    if (this._goingRight){
-      this._goingRight = false;
-      this._boxDiv.className = 'box goto-top-left';
-    }else{
-      this.Move();
-    }
-  }
+   /**
+   * Returns a random integer between min (inclusive) and max (inclusive)
+   * Using Math.round() will give you a non-uniform distribution!
+   */
+   private getRandomInt(min, max) {
+     return Math.floor(Math.random() * (max - min + 1)) + min;
+   }
 }

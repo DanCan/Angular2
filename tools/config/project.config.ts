@@ -26,7 +26,7 @@ export class ProjectConfig extends SeedConfig {
 
       { src: 'jquery/dist/jquery.js', inject: 'libs' },
       { src: 'semantic-ui-css/semantic.js', inject: 'libs' },
-      { src: 'semantic-ui-css/themes/*', inject: 'libs' }
+      { src: 'semantic-ui-css/themes/**/*', inject: 'libs' }
     ];
 
     // Add `local` third-party libraries to be injected/bundled.
