@@ -69,6 +69,7 @@ class Stage {
 
   public SetupBox(box:Box) {
     this._box = box;
+    this._box.SetLabel("Click Me!");
     this.m_setBoxDimensions();
   }
 
@@ -118,6 +119,11 @@ class Box {
   public SetDimensionByScale(stageWidth: any, stageHeight: any) {
     this._boxDiv.style.width = stageWidth + "px";
     this._boxDiv.style.height = stageHeight + "px";
+  }
+
+  public SetLabel(labelString){
+    console.log(this._boxDiv.getElementsByClassName('boxLabel')[0]);
+    //this._boxDiv.getElementsByClassName('boxLabel')[0].innerHTML = labelString;
   }
 
   public NewDirection() {

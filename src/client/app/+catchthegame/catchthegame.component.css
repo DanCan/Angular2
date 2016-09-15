@@ -44,13 +44,6 @@ p {
   background-color: #00AA00;
 }
 
-.block {
-  position:absolute;
-  background-color: #ffffff;
-  transform: translate( 100%, 50%)
-}
-
-
 /* Animations */
 
 .goto-top-right {
