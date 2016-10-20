@@ -69,9 +69,9 @@ export class AddArticleComponent {
     }
 
     private formatHTTPLink(link: HTMLInputElement){
-        // Just look "www." at start of the link.
-        if (!link.value.match(/^ ([w|W]{3,}\.)/) ) {
-                link.value = "http://" + link.value;
+        // Look "www." at start of the link. or NOT http(s)
+        if (link.value.match(/^ ([w|W]{3,}\.)/ ) || !link.value.match(/(https?)/)  ) {
+            link.value = "http://" + link.value;
         }
     }
 }
