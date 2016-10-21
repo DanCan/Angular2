@@ -1,5 +1,6 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import {TodoModel} from "../../shared/todo/todo-model";
+import {EventEmitter} from "@angular/common/src/facade/async";
 
 @Component ({
   selector: 'todo-item-renderer',
@@ -11,14 +12,14 @@ import {TodoModel} from "../../shared/todo/todo-model";
 </style>
 <div>
   <span [ngClass]="todo.status">{{todo.title}}</span>
-  <button (click)="todo.toggle()">Toggle</button>
+  <button (click)="toggle.emit(todo)">Toggle</button>
 </div>
 `
 })
 
 export class TodoItemRenderer {
   @Input() todo:TodoModel;
-  constructor(){
-    console.log("hey");
-  }
+  @Output() toggle:EventEmitter = new EventEmitter();
+
+  constructor() { }
 }

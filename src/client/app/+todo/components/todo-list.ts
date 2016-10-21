@@ -4,6 +4,11 @@ import { StartedPipe } from '../../shared/pipes/started-pipe';
 import { SearchPipe } from '../../shared/pipes/search-pipe';
 import { TodoService } from '../../shared/index';
 
+/*
+  Loops over all todos in the todoService to be rendered.
+  @status : The current todos to show with status
+  @term : A string that is filtering our results from 'status'
+ */
 @Component ({
   selector: 'todo-list',
   pipes: [StartedPipe, SearchPipe],

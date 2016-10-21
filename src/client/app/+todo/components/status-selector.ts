@@ -3,7 +3,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'status-selector',
   template: `
-<div>
+<div>View:
   <select #sel (change)="select.emit(sel.value)">
     <option *ngFor="let status of statuses">
       {{status}}
