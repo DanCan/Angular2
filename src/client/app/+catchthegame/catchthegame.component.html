@@ -4,7 +4,7 @@
 <div (window:resize)="stage.OnResize($event)" class="main">
 
   <div class="stage">
-    <div class="box" (click)="box.NewDirection()">
+    <div class="box goto-top-left" (click)="BoxClick()">
     </div>
 
     <p (click)="Start()" *ngIf="!started" class="title">

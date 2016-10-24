@@ -36,7 +36,7 @@ export class CatchTheGameComponent {
 
   private addBox(){
     this.stage.SetupBox(this.box);
-    this.stage.SetupBlock();
+    //this.stage.SetupBlock();
   }
 
 }
@@ -71,6 +71,7 @@ class Stage {
     this._box = box;
     this._box.SetLabel("Click Me!");
     this.m_setBoxDimensions();
+    this._box.NewDirection();
   }
 
   public SetupBlock() {
@@ -112,8 +113,23 @@ class Box {
     'bottom-right',
   ];
 
+  private cssTransform: Array<string> = [
+    'translate(300%, 0%)',
+    'translate(0%, 0%)',
+    'translate(0%, 300%)',
+    'translate(300%, 300%)'
+  ];
+
+  private minTransitionTime = 1;
+  private currentTransitionTime = this.minTransitionTime;
+  private cssTransition: string = `transform ${this.minTransitionTime}s ease`;
+
   constructor(who = 'box'){
     this._boxDiv = document.getElementsByClassName(who)[0];
+  }
+
+  private BoxClick() {
+    this.currentTransitionTime += 1;
   }
 
   public SetDimensionByScale(stageWidth: any, stageHeight: any) {
@@ -128,13 +144,29 @@ class Box {
 
   public NewDirection() {
     let cssClass = this._boxDiv.className;
-    let newClass = this.cssDirections[this.getRandomInt(0,3)];
+    let index = this.getRandomInt(0,3);
+    let newClass = this.cssDirections[index];
+
+    console.log(cssClass,",", newClass);
 
     while(cssClass.indexOf(newClass) !== -1){
-      newClass = this.cssDirections[this.getRandomInt(0,3)];
+      index = this.getRandomInt(0,3);
+      newClass = this.cssDirections[index];
     }
 
+    //console.log("ClassName:", this._boxDiv.className);
+    //console.log("style:", this._boxDiv.style);
+
+//    this._boxDiv.className = 'box goto-'+ newClass;
     this._boxDiv.className = 'box goto-'+ newClass;
+
+    console.log("transform:", this._boxDiv.style.transform, index, this.cssTransform[index]);
+    this._boxDiv.style.transform = this.cssTransform[index];
+    this._boxDiv.style.transition = this.cssTransition.replace(/\d+/g, this.currentTransitionTime );
+    console.log("transform:", this._boxDiv.style.transform);
+
+    //TODO: How to setTimeOut to call this function again.
+    //this._boxDiv.setTimeout(this.NewDirection, this.currentTransitionTime * 1000);
   }
 
    /**
