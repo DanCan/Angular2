@@ -58,6 +58,8 @@ class Header { }
     class: 'row'
   }
 })
+
+  //TODO: require at least a letter for the Title
 class ArticleComponent {
   article: Article;
 

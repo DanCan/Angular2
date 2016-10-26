@@ -162,6 +162,7 @@ class Box {
 
     console.log(cssClass,",", newClass);
 
+    //TODO: turn this into a if condition to not delay so much
     while(cssClass.indexOf(newClass) !== -1){
       index = this.getRandomInt(0,3);
       newClass = this.cssDirections[index];
