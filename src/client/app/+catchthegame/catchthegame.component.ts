@@ -24,6 +24,11 @@ export class CatchTheGameComponent {
       console.log(this._elm);
   }
 
+  ngOnDestroy() {
+    console.log("leaving");
+    this.box.Destroy();
+  }
+
   ngOnInit(){
     this.stage = new Stage();
     this.box = new Box();
@@ -37,6 +42,10 @@ export class CatchTheGameComponent {
   private addBox(){
     this.stage.SetupBox(this.box);
     //this.stage.SetupBlock();
+  }
+
+  private BoxClick() {
+    this.box.click();
   }
 
 }
@@ -55,7 +64,6 @@ class Stage {
     console.log('My Stage ', this._stageDiv.getBoundingClientRect());
 
     this.setDefaultValues();
-
   }
 
   public OnResize() {
@@ -116,20 +124,25 @@ class Box {
   private cssTransform: Array<string> = [
     'translate(300%, 0%)',
     'translate(0%, 0%)',
-    'translate(0%, 300%)',
-    'translate(300%, 300%)'
+    'translate(0%, 299.4%)',
+    'translate(299.4%, 299.4%)'
   ];
 
   private minTransitionTime = 1;
   private currentTransitionTime = this.minTransitionTime;
   private cssTransition: string = `transform ${this.minTransitionTime}s ease`;
+  private timeoutID;
 
   constructor(who = 'box'){
     this._boxDiv = document.getElementsByClassName(who)[0];
   }
 
-  private BoxClick() {
-    this.currentTransitionTime += 1;
+  public Destroy() {
+    window.clearTimeout(this.timeoutID);
+  }
+
+  public click() {
+    this.currentTransitionTime = this.currentTransitionTime/2;
   }
 
   public SetDimensionByScale(stageWidth: any, stageHeight: any) {
@@ -155,18 +168,17 @@ class Box {
     }
 
     //console.log("ClassName:", this._boxDiv.className);
-    //console.log("style:", this._boxDiv.style);
 
 //    this._boxDiv.className = 'box goto-'+ newClass;
-    this._boxDiv.className = 'box goto-'+ newClass;
+    //this._boxDiv.className = 'box goto-'+ newClass;
 
-    console.log("transform:", this._boxDiv.style.transform, index, this.cssTransform[index]);
+    // console.log("transform:", this._boxDiv.style.transform, index, this.cssTransform[index]);
     this._boxDiv.style.transform = this.cssTransform[index];
     this._boxDiv.style.transition = this.cssTransition.replace(/\d+/g, this.currentTransitionTime );
-    console.log("transform:", this._boxDiv.style.transform);
+    // console.log("transform:", this._boxDiv.style.transform);
 
     //TODO: How to setTimeOut to call this function again.
-    //this._boxDiv.setTimeout(this.NewDirection, this.currentTransitionTime * 1000);
+    this.timeoutID = window.setTimeout(this.NewDirection.bind(this), this.currentTransitionTime * 1000);
   }
 
    /**
