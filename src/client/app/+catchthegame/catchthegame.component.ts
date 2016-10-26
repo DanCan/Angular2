@@ -175,7 +175,7 @@ class Box {
 
     // console.log("transform:", this._boxDiv.style.transform, index, this.cssTransform[index]);
     this._boxDiv.style.transform = this.cssTransform[index];
-    this._boxDiv.style.transition = this.cssTransition.replace(/\d+/g, this.currentTransitionTime );
+    this._boxDiv.style.transition = this.cssTransition.replace( /\d+/g, this.currentTransitionTime.toString() );
     // console.log("transform:", this._boxDiv.style.transform);
 
     //TODO: How to setTimeOut to call this function again.
